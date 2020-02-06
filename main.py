@@ -19,7 +19,10 @@ class PERT:
             return "Exiting program..."
         elif x == '':
             ans = input("Enter durations [O R P]... ")
-            fix = [int(i) for i in ans.split(' ')]
+            try:
+                fix = [int(i) for i in ans.split(' ')]
+            except ValueError:
+                fix = [float(i) for i in ans.split(' ')]
             self.lol.append(fix)
             self.brain()
         elif x == 'y':
