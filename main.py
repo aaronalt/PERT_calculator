@@ -7,11 +7,13 @@ class PERT:
         self.r = 0
         self.p = 0
         self.o = 0
-        self.total_mean = 0
-        self.total_std_dev = 0
         self.total_r = 0
         self.total_p = 0
         self.total_o = 0
+        self.total_mean = 0
+        self.total_std_dev = 0
+        self.weeks = []
+
 
     def brain(self):
         x = input("Press [enter] to make a calculation, 'y' to push calculation, or 'n' to exit ")
@@ -27,6 +29,7 @@ class PERT:
             self.lol.append(fix)
             self.brain()
         elif x == 'y':
+            self.hours_to_weeks()
             self.calculation()
             return
         else:
@@ -48,18 +51,38 @@ class PERT:
             self.total_o += i[0]
             self.total_r += i[1]
             self.total_p += i[2]
-
-        print("\n==========================\n")
+        print("List of data:")
+        for i in self.lol:
+            print("\t", i)
+        print("\n============================\n")
         print(f"Total PERT estimate: {round(self.total_mean, 2)}")
         print(f"Total deviation: {self.total_std_dev}")
         print(f"Total optimistic: {self.total_o}")
         print(f"Total realistic: {self.total_r}")
         print(f"Total pessimistic: {self.total_p}")
-        print("\n==========================\n")
-        print("List of data:\n")
-        for i in self.lol:
-            print(i)
-        print("\nwe are done here...bye")
+        print("\n============================\n")
+        print("we are done here...bye")
+
+    def hours_to_weeks(self):
+        week_o = 0
+        week_p = 0
+        week_r = 0
+        week_mean = 0
+        self.weeks = [[x / 8 for x in i] for i in self.lol]
+        print(".\n...\n.....\n.......")
+        print("Weeks data:")
+        for i in self.weeks:
+            print("\t", i)
+            week_o += i[0]
+            week_r += i[1]
+            week_p += i[2]
+            # week_mean += i[3]
+        # print(f"Mean week estimate: {week_mean}")
+        print(".....................")
+        print(f"Optimistic week estimate: \n\t{week_o}")
+        print(f"Realistic week estimate: \n\t{week_r}")
+        print(f"Pessimistic week estimate: \n\t{week_p}")
+        print(".......\n.....\n...\n.")
 
 
 def main():
