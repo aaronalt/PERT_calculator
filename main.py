@@ -8,6 +8,7 @@ class PERT:
         self.p = 0
         self.o = 0
         self.total_mean = 0
+        self.total_std_dev = 0
         self.total_r = 0
         self.total_p = 0
         self.total_o = 0
@@ -38,15 +39,19 @@ class PERT:
             self.r = i[1]
             self.p = i[2]
             mean = (self.o + 4 * self.r + self.p) / 6
+            std_dev = (self.p - self.o) / 6
             i.append(round(mean, 2))
+            i.append(round(std_dev, 4))
         for i in self.lol:
             self.total_mean += i[3]
+            self.total_std_dev += i[4]
             self.total_o += i[0]
             self.total_r += i[1]
             self.total_p += i[2]
 
         print("\n==========================\n")
         print(f"Total PERT estimate: {round(self.total_mean, 2)}")
+        print(f"Total deviation: {self.total_std_dev}")
         print(f"Total optimistic: {self.total_o}")
         print(f"Total realistic: {self.total_r}")
         print(f"Total pessimistic: {self.total_p}")
