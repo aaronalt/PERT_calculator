@@ -68,7 +68,13 @@ class PERT:
         week_p = 0
         week_r = 0
         week_mean = 0
+        std_dev = 0
         self.weeks = [[x / 8 for x in i] for i in self.lol]
+        for i in self.weeks:
+            mean = (i[0] + 4 * i[1] + i[2]) / 6
+            std_dev = (i[2] - i[0]) / 6
+            i.append(round(mean, 2))
+            i.append(round(std_dev, 4))
         print(".\n...\n.....\n.......")
         print("Weeks data:")
         for i in self.weeks:
@@ -76,13 +82,14 @@ class PERT:
             week_o += i[0]
             week_r += i[1]
             week_p += i[2]
-            # week_mean += i[3]
-        # print(f"Mean week estimate: {week_mean}")
-        print(".....................")
+            week_mean += i[3]
+            std_dev += i[4]
+        print(f"Mean week estimate: \n\t{week_mean}")
+        print(f"Standard deviation: \n\t{std_dev}")
         print(f"Optimistic week estimate: \n\t{week_o}")
         print(f"Realistic week estimate: \n\t{week_r}")
         print(f"Pessimistic week estimate: \n\t{week_p}")
-        print(".......\n.....\n...\n.")
+        # print(".......\n.....\n...\n.")
 
 
 def main():
