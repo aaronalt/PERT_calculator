@@ -14,7 +14,6 @@ class PERT:
         self.total_std_dev = 0
         self.weeks = []
 
-
     def brain(self):
         x = input("Press [enter] to make a calculation, 'y' to push calculation, or 'n' to exit ")
         if x == 'n':
@@ -92,7 +91,7 @@ class PERT:
         print(f"Total deviation: {self.total_std_dev}")
         print(f"Total optimistic: {self.total_o}")
         print(f"Total realistic: {self.total_r}")
-        print(f"Total pessimistic: {self.total_p}")
+        print(f"Total pessimistic: {round(self.total_p)}")
         print("\n============================\n")
         print("we are done here...bye")
 
